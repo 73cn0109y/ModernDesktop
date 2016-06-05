@@ -118,48 +118,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Hot_Windy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Light_Rain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Light_Snow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Lightning_Storm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Snow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Storm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Sunny.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Windy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Windy_Rain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Windy_Snow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Cloudy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Heavy_Rain.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Widget_Weather_Windy_Snow.png" />
   </ItemGroup>
   <ItemGroup>
