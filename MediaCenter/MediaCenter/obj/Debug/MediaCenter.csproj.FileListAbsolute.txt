@@ -9,3 +9,14 @@ e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\Media
 e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.exe
 e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.pdb
 e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.Form1.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MediaCenter.exe.config
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MediaCenter.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MediaCenter.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MaterialAPI.dll
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MaterialAPI.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.Form1.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csproj.GenerateResource.Cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.pdb

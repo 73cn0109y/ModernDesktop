@@ -3,6 +3,7 @@ using System.IO;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Net;
 
 namespace ModernDesktop
 {
@@ -75,6 +76,8 @@ namespace ModernDesktop
 			_rect.Right = rect.Right;
 			_rect.Bottom = rect.Bottom;
 
+			Console.WriteLine(rect);
+
 			bool result = SystemParametersInfo(SPI_SETWORKAREA, IntPtr.Zero, ref _rect, SPIF_change);
 
 			if (!result)
@@ -95,6 +98,54 @@ namespace ModernDesktop
 				visible = ((style & WS_DISABLED) != WS_DISABLED);
 			}
 			return visible;
+		}
+
+		public static string ToString(this Widgets.WeatherData.UnitType e)
+		{
+			return (e == Widgets.WeatherData.UnitType.Kelvin ? "K" : (e == Widgets.WeatherData.UnitType.Fahrenheit ? "°F" : "°C"));
+		}
+
+		public static string DownloadString(this string e)
+		{
+			using (WebClient client = new WebClient())
+				return client.DownloadString(e);
+		}
+
+		public static string[] Split(this string e, string s)
+		{
+			return e.Split(new string[] { s }, StringSplitOptions.None);
+		}
+
+		public static bool CharBeforeChar(this string e, char first, char second)
+		{
+			bool foundFirst = false;
+			foreach(char c in e)
+			{
+				if (foundFirst && c == second)
+					return true;
+				else if (c == first)
+					foundFirst = true;
+				else if (c == second)
+					return false;
+			}
+
+			return false;
+		}
+
+		public static double Convert(this double e, Widgets.WeatherData.UnitType to)
+		{
+			double v = e;
+
+			if (to == Widgets.WeatherData.UnitType.Celcius)
+			{
+				v = v - 273.15;
+			}
+			else if (to == Widgets.WeatherData.UnitType.Fahrenheit)
+			{
+				v = (v - 273.15) * 1.8f + 32.0f;
+			}
+
+			return v;
 		}
 	}
 }

@@ -34,5 +34,17 @@ namespace ModernDesktop.Properties {
                 this["Desktop_WallpaperLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2156034")]
+        public string Widget_Weather_CityID {
+            get {
+                return ((string)(this["Widget_Weather_CityID"]));
+            }
+            set {
+                this["Widget_Weather_CityID"] = value;
+            }
+        }
     }
 }

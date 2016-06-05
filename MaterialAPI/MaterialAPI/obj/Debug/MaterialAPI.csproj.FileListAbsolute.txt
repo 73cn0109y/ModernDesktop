@@ -6,3 +6,11 @@ e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Debug\Mater
 E:\Documents\Visual Studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.Form.resources
 E:\Documents\Visual Studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.Properties.Resources.resources
 E:\Documents\Visual Studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.csproj.GenerateResource.Cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\bin\Debug\MaterialAPI.dll
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\bin\Debug\MaterialAPI.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.Form.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.csproj.GenerateResource.Cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.dll
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.pdb

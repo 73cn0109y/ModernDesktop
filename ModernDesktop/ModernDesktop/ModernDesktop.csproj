@@ -59,7 +59,7 @@
       <DependentUpon>ApplicationWatcher.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions.cs" />
-    <Compile Include="Form.cs">
+    <Compile Include="Controls\Windows\Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.cs">
@@ -68,13 +68,28 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDF.Designer.cs">
+      <DependentUpon>MDF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Widgets\Weather.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Widgets\Weather.Designer.cs">
+      <DependentUpon>Weather.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Applications\Taskbar\Taskbar.resx">
       <DependentUpon>Taskbar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDF.resx">
+      <DependentUpon>MDF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,7 +99,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Widgets\Weather.resx">
+      <DependentUpon>Weather.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,6 +116,96 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hot_Windy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Light_Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Light_Snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lightning_Storm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Storm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sunny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Windy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Windy_Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Windy_Snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloudy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Heavy_Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Windy_Snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Cloudy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Heavy_Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Hot_Windy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Icy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Light_Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Light_Snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Lightning_Storm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Storm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Sunny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Windy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Windy_Rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Widget_Weather_Fog.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

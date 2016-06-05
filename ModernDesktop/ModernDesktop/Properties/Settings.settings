@@ -5,5 +5,8 @@
     <Setting Name="Desktop_WallpaperLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\ModernDesktop\System\wallpapers\001.png</Value>
     </Setting>
+    <Setting Name="Widget_Weather_CityID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2156034</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

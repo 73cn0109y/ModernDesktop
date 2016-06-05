@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ModernDesktop
@@ -13,6 +7,7 @@ namespace ModernDesktop
 	public partial class Desktop : Form
 	{
 		public Applications.Taskbar.Taskbar Taskbar { get; private set; }
+		public Widgets.Weather WeatherWidget { get; set; }
 
 		public Desktop(int i = 0)
 		{
@@ -31,9 +26,20 @@ namespace ModernDesktop
 			{
 				foreach (Screen scr in Screen.AllScreens)
 				{
-					Extensions.SetWorkspace(new Rectangle(scr.Bounds.Left, scr.Bounds.Top, scr.Bounds.Right, scr.Bounds.Bottom - (scr.Bounds.Location == default(Point) ? Taskbar.Height : 0)));
+					Extensions.SetWorkspace(new Rectangle(scr.Bounds.Left, scr.Bounds.Top, scr.Bounds.Right - scr.Bounds.Left, scr.Bounds.Bottom - (scr.Bounds.Location == default(Point) ? Taskbar.Height : 0) - scr.Bounds.Top));
 				}
 			}
+
+			InitializeGadgets();
+		}
+
+		private void InitializeGadgets()
+		{
+			WeatherWidget = new Widgets.Weather();
+			WeatherWidget.Location = new Point(Right - WeatherWidget.Width - 15, Top + 15);
+			WeatherWidget.Show();
+
+			WeatherWidget.UpdateCurrent();
 		}
 
 		protected override CreateParams CreateParams

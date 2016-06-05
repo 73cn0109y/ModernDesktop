@@ -11,3 +11,12 @@ e:\documents\visual studio 2015\Projects\ModernDesktop\ModernDesktop\obj\Debug\M
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\Debug\ModernDesktop.exe.config
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.exe
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\Debug\ModernDesktop.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\Debug\ModernDesktop.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.Applications.Taskbar.Taskbar.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.Desktop.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.csproj.GenerateResource.Cache
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.MDF.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.Widgets.Weather.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\Debug\ModernDesktop.csprojResolveAssemblyReference.cache
