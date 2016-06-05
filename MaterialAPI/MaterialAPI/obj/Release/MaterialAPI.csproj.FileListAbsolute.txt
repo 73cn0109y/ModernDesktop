@@ -1,0 +1,8 @@
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\bin\Release\MaterialAPI.dll
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\bin\Release\MaterialAPI.pdb
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.dll
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.pdb
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.Form.resources
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.csproj.GenerateResource.Cache
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.Properties.Resources.resources

@@ -1,0 +1,11 @@
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\bin\Debug\MediaCenter.exe.config
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\bin\Debug\MediaCenter.exe
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\bin\Debug\MediaCenter.pdb
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\bin\Debug\MaterialAPI.dll
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\bin\Debug\MaterialAPI.pdb
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.Properties.Resources.resources
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csproj.GenerateResource.Cache
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.exe
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.pdb
+e:\documents\visual studio 2015\Projects\MediaCenter\MediaCenter\obj\Debug\MediaCenter.Form1.resources
