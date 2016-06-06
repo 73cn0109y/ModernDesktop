@@ -1,0 +1,11 @@
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\ModernDesktop.exe.config
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\ModernDesktop.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\ModernDesktop.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.Taskbar.Taskbar.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Desktop.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.MDF.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Widgets.Weather.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.csproj.GenerateResource.Cache
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.pdb

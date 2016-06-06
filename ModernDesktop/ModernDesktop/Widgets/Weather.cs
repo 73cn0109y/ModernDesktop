@@ -255,8 +255,6 @@ namespace ModernDesktop.Widgets
 		{
 			switch (e)
 			{
-				case WeatherData.WeatherCondition.Clear:
-					return Properties.Resources.Widget_Weather_Clear;
 				case WeatherData.WeatherCondition.Fog:
 					return Properties.Resources.Widget_Weather_Fog;
 				case WeatherData.WeatherCondition.Rain:
@@ -269,9 +267,11 @@ namespace ModernDesktop.Widgets
 					return Properties.Resources.Widget_Weather_Lightning_Storm;
 				case WeatherData.WeatherCondition.Wind:
 					return Properties.Resources.Widget_Weather_Windy;
+				case WeatherData.WeatherCondition.Clouds:
+					return Properties.Resources.Widget_Weather_Cloudy;
 			}
 
-			return null;
+			return Properties.Resources.Widget_Weather_Clear;
 		}
 	}
 
@@ -293,7 +293,8 @@ namespace ModernDesktop.Widgets
 			Snow,
 			LightningStorm,
 			Wind,
-			Fog
+			Fog,
+			Clouds
 		}
 
 		public WeatherData() { }

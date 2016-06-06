@@ -7,22 +7,27 @@ namespace ModernDesktop.Applications.Taskbar
 {
 	public partial class Taskbar : Form
 	{
+		public Applications.StartMenu.StartMenu StartMenu { get; private set; }
+
 		private BackgroundWorker TimeKeeper;
 
 		public Taskbar()
 		{
 			InitializeComponent();
 
-			MinimumSize = MaximumSize = Size = new Size(Screen.PrimaryScreen.Bounds.Width, 35);
+			MinimumSize = MaximumSize = Size = new Size(Screen.PrimaryScreen.Bounds.Width, 40);
 			Location = new Point(Screen.PrimaryScreen.Bounds.Left, Screen.PrimaryScreen.Bounds.Height - Height);
 
 			this.SetTopMost();
+
+			StartMenu = new Applications.StartMenu.StartMenu();
+			StartMenu.Location = new Point(Location.X, Location.Y - StartMenu.Height);
 
 			TimeKeeper = new BackgroundWorker();
 			TimeKeeper.DoWork += TimeKeeper_DoWork;
 			TimeKeeper.RunWorkerAsync();
 
-			applicationWatcher1.Run();
+			applicationWatcher1.Run(this);
 		}
 
 		private void TimeKeeper_DoWork(object sender, DoWorkEventArgs e)
@@ -37,6 +42,35 @@ namespace ModernDesktop.Applications.Taskbar
 
 				System.Threading.Thread.Sleep(100);
 			}
+		}
+
+		protected override CreateParams CreateParams
+		{
+			get
+			{
+				CreateParams baseParams = base.CreateParams;
+
+				const int WS_EX_NOACTIVATE = 0x08000000;
+				const int WS_EX_TOOLWINDOW = 0x00000080;
+				baseParams.ExStyle |= (int)(WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
+
+				return baseParams;
+			}
+		}
+
+		protected override void OnDeactivate(EventArgs e)
+		{
+			applicationWatcher1.HidePreview();
+
+			base.OnDeactivate(e);
+		}
+
+		private void picStartButton_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Left)
+				return;
+
+			StartMenu.Show();
 		}
 	}
 }

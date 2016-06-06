@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Net;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ModernDesktop
 {
@@ -16,7 +18,23 @@ namespace ModernDesktop
 		[return: MarshalAs(UnmanagedType.Bool)]
 		private static extern bool SystemParametersInfo(int uiAction, IntPtr uiParam, ref RECT pvParam, int fWinIni);
 		[DllImport("user32.dll", SetLastError = true)]
-		static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
+		private static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
+		[DllImport("shell32.dll")]
+		private static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
+		[DllImport("User32.dll")]
+		private static extern int DestroyIcon(IntPtr hIcon);
+		[DllImport("user32.dll")]
+		private static extern IntPtr GetForegroundWindow();
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+		[DllImport("user32.dll")]
+		private static extern bool SetForegroundWindow(IntPtr hWnd);
+		[DllImport("user32.dll")]
+		private static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
 		#endregion
 
 		#region Constants
@@ -25,6 +43,9 @@ namespace ModernDesktop
 		private const Int32 SPIF_change = SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE;
 		private const Int32 SPI_SETWORKAREA = 47;
 		private const Int32 SPI_GETWORKAREA = 48;
+		private const uint FILE_ATTRIBUTE_NORMAL = 0x80;
+		private const uint FILE_ATTRIBUTE_DIRECTORY = 0x10;
+		private const int WM_SETREDRAW = 11;
 		#endregion
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -36,9 +57,53 @@ namespace ModernDesktop
 			public Int32 Bottom;
 		}
 
+		[StructLayout(LayoutKind.Sequential)]
+		private struct SHFILEINFO
+		{
+			public IntPtr hIcon;
+			public IntPtr iIcon;
+			public uint dwAttributes;
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+			public string szDisplayName;
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+			public string szTypeName;
+		}
+
+		private struct WINDOWPLACEMENT
+		{
+			public int length;
+			public int flags;
+			public int showCmd;
+			public System.Drawing.Point ptMinPosition;
+			public System.Drawing.Point ptMaxPosition;
+			public System.Drawing.Rectangle rcNormalPosition;
+		}
+
+		public enum WindowState : int
+		{
+			Normal,
+			Minimized,
+			Maximized
+		}
+
+		public static void SendToBack(this IntPtr handle)
+		{
+			SetWindowPos(handle, new IntPtr(1), 0, 0, 0, 0, 0x0001 | 0x0002 | 0x0010 | 0x0040);
+		}
+
 		public static void SendToBack(this Form ctrl)
 		{
 			SetWindowPos(ctrl.Handle, new IntPtr(1), 0, 0, 0, 0, 0x0001 | 0x0002 | 0x0010 | 0x0040);
+		}
+
+		public static void BottomMost(this IntPtr handle)
+		{
+			SetWindowPos(handle, new IntPtr(1), 0, 0, 0, 0, 0x0001 | 0x0002 | 0x0010);
+		}
+
+		public static void BringToFromt(this IntPtr handle)
+		{
+			SetForegroundWindow(handle);
 		}
 
 		public static void BringToFront(this Form ctrl)
@@ -68,6 +133,13 @@ namespace ModernDesktop
 			return img;
 		}
 
+		public static void OptimizeImage(this Bitmap bmp)
+		{
+			using (Bitmap clone = new Bitmap(bmp.Width, bmp.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb))
+			using (Graphics g = Graphics.FromImage(clone))
+				g.DrawImage(bmp, new Rectangle(0, 0, clone.Width, clone.Height));
+		}
+
 		public static bool SetWorkspace(this Rectangle rect)
 		{
 			RECT _rect = new RECT();
@@ -75,8 +147,6 @@ namespace ModernDesktop
 			_rect.Top = rect.Top;
 			_rect.Right = rect.Right;
 			_rect.Bottom = rect.Bottom;
-
-			Console.WriteLine(rect);
 
 			bool result = SystemParametersInfo(SPI_SETWORKAREA, IntPtr.Zero, ref _rect, SPIF_change);
 
@@ -146,6 +216,85 @@ namespace ModernDesktop
 			}
 
 			return v;
+		}
+
+		public static Bitmap GetLargeIcon(this string location)
+		{
+			SHFILEINFO info = new SHFILEINFO();
+			IntPtr img = SHGetFileInfo(location, FILE_ATTRIBUTE_NORMAL, ref info, (uint)Marshal.SizeOf(info), (uint)(0x000000100 | 0x000000000 | 0x000000010));
+			Icon ico = Icon.FromHandle(info.hIcon);
+			Bitmap icon = new Bitmap(40, 40);
+			using (Graphics g = Graphics.FromImage(icon))
+				g.DrawIcon(ico, 20 - (ico.Width / 2), 20 - (ico.Height / 2));
+			icon.OptimizeImage();
+			DestroyIcon(info.hIcon);
+			return icon;
+		}
+
+		public static IntPtr GetTopWindow()
+		{
+			return GetForegroundWindow();
+		}
+
+		public static WindowState GetWindowState(this IntPtr handle)
+		{
+			WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+			GetWindowPlacement(handle, ref placement);
+
+			switch (placement.showCmd)
+			{
+				case 2:
+					return WindowState.Minimized;
+				case 3:
+					return WindowState.Maximized;
+			}
+
+			return WindowState.Normal;
+		}
+
+		public static bool RestoreToMaximized(this IntPtr handle)
+		{
+			WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+			GetWindowPlacement(handle, ref placement);
+
+			return (placement.flags == 0x0002);
+		}
+
+		public static void Minimize(this IntPtr handle)
+		{
+			ShowWindow(handle, 6);
+			SendToBack(handle);
+		}
+
+		public static void Restore(this IntPtr handle, bool restoreOverride = false)
+		{
+			if (handle.RestoreToMaximized() && !restoreOverride)
+				ShowWindow(handle, 3);
+			else
+				ShowWindow(handle, 1);
+		}
+
+		public static void Maximize(this IntPtr handle)
+		{
+			ShowWindow(handle, 3);
+		}
+
+		public static void Add<T1, T2>(this Dictionary<T1, T2> parent, params Dictionary<T1, T2>[] obj)
+		{
+			foreach (Dictionary<T1, T2> entry in obj)
+				foreach (KeyValuePair<T1, T2> item in entry)
+					parent.Add(item.Key, item.Value);
+		}
+
+		public static void SuspendDrawing(this Control ctrl)
+		{
+			SendMessage(ctrl.Handle, WM_SETREDRAW, false, 0);
+		}
+
+		public static void ResumeDrawing(this Control ctrl)
+		{
+			SendMessage(ctrl.Handle, WM_SETREDRAW, true, 0);
+			ctrl.Refresh();
 		}
 	}
 }

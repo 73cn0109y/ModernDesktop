@@ -14,7 +14,6 @@ C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\Medi
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MediaCenter.pdb
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MaterialAPI.dll
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Debug\MaterialAPI.pdb
-C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.Form1.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.Properties.Resources.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csproj.GenerateResource.Cache

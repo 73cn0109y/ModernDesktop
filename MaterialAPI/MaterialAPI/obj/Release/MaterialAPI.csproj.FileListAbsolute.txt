@@ -6,3 +6,10 @@ e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\Mat
 e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.csproj.GenerateResource.Cache
 e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.csprojResolveAssemblyReference.cache
 e:\documents\visual studio 2015\Projects\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\bin\Release\MaterialAPI.dll
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\bin\Release\MaterialAPI.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.Form.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.csproj.GenerateResource.Cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.dll
+C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Release\MaterialAPI.pdb

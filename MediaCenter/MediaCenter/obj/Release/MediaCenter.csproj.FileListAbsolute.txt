@@ -1,0 +1,11 @@
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Release\MediaCenter.exe.config
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Release\MediaCenter.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Release\MediaCenter.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Release\MaterialAPI.dll
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\bin\Release\MaterialAPI.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Release\MediaCenter.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Release\MediaCenter.Form1.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Release\MediaCenter.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Release\MediaCenter.csproj.GenerateResource.Cache
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Release\MediaCenter.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Release\MediaCenter.pdb

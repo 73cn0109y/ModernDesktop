@@ -3,17 +3,28 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Threading.Tasks;
+
+using ModernDesktop.Misc;
 
 namespace ModernDesktop.Components.Taskbar
 {
 	public partial class ApplicationWatcher : Component
 	{
+		private const int ITEM_WIDTH = 40;
+		private const int ITEM_HEIGHT = 40;
+
 		private BackgroundWorker Watcher;
-		private List<Process> ListedProcess = new List<Process>();
+		private HashSet<ProcessInfo> ListedProcesses = new HashSet<ProcessInfo>();
+		private Control TargetContainer;
+		private ToolTip tt;
 		private readonly string[] ExcludedApplicationNames =
 		{
 			"applicationframehost",
-			"explorer"
+			"explorer",
+			"chrome"
 		};
 
 		public ApplicationWatcher()
@@ -41,8 +52,14 @@ namespace ModernDesktop.Components.Taskbar
 			Watcher.WorkerSupportsCancellation = true;
 		}
 
-		public void Run()
+		public void Run(Control ctrl)
 		{
+			if(tt == null)
+			{
+				tt = new ToolTip();
+			}
+
+			TargetContainer = ctrl;
 			Watcher.RunWorkerAsync();
 		}
 
@@ -56,37 +73,163 @@ namespace ModernDesktop.Components.Taskbar
 
 		}
 
+		public void HidePreview()
+		{
+			if (TargetContainer == null)
+				return;
+
+			foreach(Controls.Taskbar.TaskbarItem item in TargetContainer.Controls.OfType<Controls.Taskbar.TaskbarItem>())
+				item.HidePreview();
+		}
+
 		private void Watcher_DoWork(object sender, DoWorkEventArgs e)
 		{
 			while(!e.Cancel && !Watcher.CancellationPending)
 			{
-				foreach (Process proc in Process.GetProcesses())
+				bool hasChanged = false;
+				int left = 50 + (ListedProcesses.Count * (40 + 5));
+
+				Dictionary<uint[], string> chromeWindows = new Dictionary<uint[], string>();
+				chromeWindows.Add(WindowsByClassFinder.WindowTitlesForClass("Chrome_WidgetWin_0"), WindowsByClassFinder.WindowTitlesForClass("Chrome_WidgetWin_1"));
+
+				foreach (Process proc in Process.GetProcesses("."))
 				{
-					if (proc.MainWindowTitle == "" || ExcludedApplicationNames.Contains(proc.ProcessName.ToLower()))
-						continue;
-
-					if (!proc.Responding)
-						continue;
-
-					if (Exists(proc.ProcessName))
-						continue;
-
-					// Remove Application
-					if (!IsOpen(proc.ProcessName))
+					try
 					{
-						ListedProcess.Remove(proc);
-						continue;
+						if (proc.MainWindowTitle == "" || ExcludedApplicationNames.Contains(proc.ProcessName.ToLower()))
+							continue;
+
+						if (!proc.Responding)
+							continue;
+
+						ProcessInfo exists = Exists(proc.MainWindowHandle);
+
+						if (exists != null)
+						{
+							if (exists.Title != proc.MainWindowTitle)
+							{
+								UpdateTitle(exists);
+							}
+							continue;
+						}
+
+						ProcessInfo pi = new ProcessInfo()
+						{
+							Location = proc.MainModule.FileName,
+							MainHandle = proc.MainWindowHandle,
+							Name = proc.ProcessName,
+							TargetHandle = IntPtr.Zero,
+							Title = proc.MainWindowTitle
+						};
+
+						// Generate Taskbar Control
+						GenerateItem(new Point(left, 0), pi, proc.MainModule.FileName);
+						hasChanged = true;
+						// --
+
+						left += ITEM_WIDTH + 5;
+
+						ListedProcesses.Add(pi);
 					}
+					catch (Win32Exception wexp)
+					{
 
-					// Generate Taskbar Control
-
-					// --
-
-					ListedProcess.Add(proc);
+					}
 				}
+
+				foreach (KeyValuePair<uint[], string> window in chromeWindows)
+				{
+					if (!string.IsNullOrWhiteSpace(window.Value))
+					{
+						try
+						{
+							Process proc = Process.GetProcessById((int)window.Key[1]);
+
+							ProcessInfo exists = Exists(new IntPtr(window.Key[0]));
+
+							if (exists != null)
+							{
+								if (exists.Title != window.Value)
+								{
+									UpdateTitle(exists);
+								}
+								continue;
+							}
+
+							ProcessInfo pi = new ProcessInfo()
+							{
+								Location = proc.MainModule.FileName,
+								MainHandle = new IntPtr(window.Key[0]),
+								Name = proc.ProcessName,
+								TargetHandle = new IntPtr(window.Key[1]),
+								Title = window.Value
+							};
+
+							GenerateItem(new Point(left, 0), pi, proc.MainModule.FileName, window.Value);
+							hasChanged = true;
+
+							left += ITEM_WIDTH + 5;
+
+							ListedProcesses.Add(pi);
+						}
+						catch (Win32Exception wex)
+						{
+
+						}
+					}
+				}
+
+				foreach (Controls.Taskbar.TaskbarItem item in TargetContainer.Controls.OfType<Controls.Taskbar.TaskbarItem>())
+				{
+					if (!IsOpen(item.ProcessInformation.Name))
+					{
+						ListedProcesses.Remove(item.ProcessInformation);
+						TargetContainer.Invoke(new MethodInvoker(() =>
+						{
+							item.Dispose();
+						}));
+						hasChanged = true;
+					}
+					else if(item.ProcessInformation.MainHandle.GetWindowState() == Extensions.WindowState.Minimized)
+						item.ProcessInformation.MainHandle.SendToBack();
+				}
+
+				if (hasChanged)
+					Reposition();
 
 				System.Threading.Thread.Sleep(500);
 			}
+		}
+
+		private void Reposition()
+		{
+			int left = 50;
+
+			foreach(Controls.Taskbar.TaskbarItem item in TargetContainer.Controls.OfType<Controls.Taskbar.TaskbarItem>())
+			{
+				TargetContainer.Invoke(new MethodInvoker(() => { item.Location = new Point(left, 0); }));
+				left += item.Width + 5;
+			}
+		}
+
+		private void GenerateItem(Point location, ProcessInfo processInfo, string FileName, string title = "")
+		{
+			Controls.Taskbar.TaskbarItem item = new Controls.Taskbar.TaskbarItem();
+			item.Size = new Size(ITEM_WIDTH, ITEM_HEIGHT);
+			item.Location = location;
+			item.BackgroundImage = FileName.GetLargeIcon();
+			item.Name = processInfo.MainHandle.ToString();
+			item.ProcessInformation = processInfo;
+
+			TargetContainer.Invoke(new MethodInvoker(() => { TargetContainer.Controls.Add(item); }));
+		}
+
+		private void UpdateTitle(ProcessInfo info)
+		{
+			IntPtr handle = info.TargetHandle == IntPtr.Zero ? info.MainHandle : info.TargetHandle;
+
+			ListedProcesses.Remove(info);
+			ListedProcesses.Add(info);
 		}
 
 		private bool IsOpen(string name)
@@ -94,9 +237,9 @@ namespace ModernDesktop.Components.Taskbar
 			return Process.GetProcessesByName(name).Length > 0;
 		}
 
-		private bool Exists(string name)
+		private ProcessInfo Exists(IntPtr id)
 		{
-			return ListedProcess.Where(x => x.ProcessName == name).Count() > 0;
+			return ListedProcesses.Where(x => id == x.MainHandle).FirstOrDefault();
 		}
 	}
 }

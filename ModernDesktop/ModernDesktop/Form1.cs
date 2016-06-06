@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -31,6 +32,8 @@ namespace ModernDesktop
 			}
 
 			InitializeGadgets();
+
+			Handle.BottomMost();
 		}
 
 		private void InitializeGadgets()
@@ -42,18 +45,12 @@ namespace ModernDesktop
 			WeatherWidget.UpdateCurrent();
 		}
 
-		protected override CreateParams CreateParams
+		protected override void WndProc(ref Message m)
 		{
-			get
-			{
-				CreateParams baseParams = base.CreateParams;
+			if (m.Msg == 0x0007)
+				Handle.BottomMost();
 
-				const int WS_EX_NOACTIVATE = 0x08000000;
-				const int WS_EX_TOOLWINDOW = 0x00000080;
-				baseParams.ExStyle |= (int)(WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
-
-				return baseParams;
-			}
+			base.WndProc(ref m);
 		}
 	}
 }
