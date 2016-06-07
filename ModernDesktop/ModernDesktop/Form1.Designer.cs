@@ -37,14 +37,8 @@
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(1920, 1080);
 			this.ForeColor = System.Drawing.Color.White;
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.KeyPreview = true;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "Desktop";
-			this.ShowIcon = false;
-			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.ShowHeader = false;
 			this.Text = "Desktop";
 			this.ResumeLayout(false);
 

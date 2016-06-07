@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using ModernDesktop.Applications.StartMenu;
 
@@ -7,11 +10,14 @@ namespace ModernDesktop.Controls.StartMenu
 {
 	public class RecentItem : Panel
 	{
+		private string FileName = null;
 		private PictureBox Icon;
 		private Label Title;
 
-		public RecentItem(RecentInfo info, int parentWidth)
+		public RecentItem(RecentInfo info, int parentWidth, string fileName)
 		{
+			FileName = fileName;
+
 			Size = new Size(parentWidth - 10, 30);
 			BackColor = Color.Transparent;
 
@@ -26,6 +32,7 @@ namespace ModernDesktop.Controls.StartMenu
 			Icon.BackColor = Color.Transparent;
 			Icon.MouseEnter += (se, ev) => { OnMouseEnter(ev); };
 			Icon.MouseLeave += (se, ev) => { OnMouseLeave(ev); };
+			Icon.MouseClick += (se, ev) => { OnMouseClick(ev); };
 
 			Title = new Label();
 			Title.AutoSize = false;
@@ -39,6 +46,7 @@ namespace ModernDesktop.Controls.StartMenu
 			Title.Padding = new Padding(15, 0, 15, 0);
 			Title.MouseEnter += (se, ev) => { OnMouseEnter(ev); };
 			Title.MouseLeave += (se, ev) => { OnMouseLeave(ev); };
+			Title.MouseClick += (se, ev) => { OnMouseClick(ev); };
 
 			Controls.Add(Icon);
 			Controls.Add(Title);
@@ -59,6 +67,21 @@ namespace ModernDesktop.Controls.StartMenu
 			BackColor = Color.Transparent;
 
 			base.OnMouseLeave(e);
+		}
+
+		protected override void OnMouseClick(MouseEventArgs e)
+		{
+			if(e.Button == MouseButtons.Left && FileName != null)
+			{
+				Process.Start(new ProcessStartInfo()
+				{
+					FileName = FileName
+				});
+
+				BackColor = Color.Transparent;
+			}
+
+			base.OnMouseClick(e);
 		}
 	}
 }

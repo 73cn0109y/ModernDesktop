@@ -38,7 +38,7 @@
 			// lblTimeDate
 			// 
 			this.lblTimeDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.lblTimeDate.Location = new System.Drawing.Point(1845, 3);
+			this.lblTimeDate.Location = new System.Drawing.Point(1845, 0);
 			this.lblTimeDate.Name = "lblTimeDate";
 			this.lblTimeDate.Size = new System.Drawing.Size(75, 35);
 			this.lblTimeDate.TabIndex = 0;
@@ -67,16 +67,12 @@
 			this.Controls.Add(this.lblTimeDate);
 			this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.White;
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.KeyPreview = true;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "Taskbar";
-			this.ShowIcon = false;
-			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.ShowHeader = false;
 			this.Text = "Taskbar";
 			this.TopMost = true;
+			this.Controls.SetChildIndex(this.lblTimeDate, 0);
+			this.Controls.SetChildIndex(this.picStartButton, 0);
 			((System.ComponentModel.ISupportInitialize)(this.picStartButton)).EndInit();
 			this.ResumeLayout(false);
 

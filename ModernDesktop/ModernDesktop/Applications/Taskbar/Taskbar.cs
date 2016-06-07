@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
+using ModernDesktop.Misc;
 
 namespace ModernDesktop.Applications.Taskbar
 {
@@ -27,6 +28,10 @@ namespace ModernDesktop.Applications.Taskbar
 			TimeKeeper.DoWork += TimeKeeper_DoWork;
 			TimeKeeper.RunWorkerAsync();
 
+			applicationWatcher1.ApplicationLaunched += (se, ev) =>
+			{
+				StartMenu.ProgramLaunched(((ProcessInfo)se).Location);
+			};
 			applicationWatcher1.Run(this);
 		}
 

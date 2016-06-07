@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\Settings\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Settings\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Applications\StartMenu\StartMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     <Compile Include="Components\Taskbar\ApplicationWatcher.Designer.cs">
       <DependentUpon>ApplicationWatcher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Windows\PictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\StartMenu\RecentItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -97,6 +106,9 @@
     </Compile>
     <Compile Include="Controls\Taskbar\TaskbarItem.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Windows\Form.Designer.cs">
+      <DependentUpon>Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Windows\Label.cs">
       <SubType>Component</SubType>
@@ -134,11 +146,17 @@
     <Compile Include="WindowCapture\XPAppearance.cs" />
     <Compile Include="WindowCapture\XPAppearance.SPI.cs" />
     <Compile Include="WindowClassFinder.cs" />
+    <EmbeddedResource Include="Applications\Settings\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Applications\StartMenu\StartMenu.resx">
       <DependentUpon>StartMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\Taskbar\Taskbar.resx">
       <DependentUpon>Taskbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Windows\Form.resx">
+      <DependentUpon>Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -219,6 +237,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Widget_Weather_Fog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MaterialAPI\MaterialAPI\MaterialAPI.csproj">
+      <Project>{40609D88-EA70-4E71-A29A-9BA6CCDBE4B2}</Project>
+      <Name>MaterialAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -61,6 +61,7 @@
 			this.lblAllPrograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblAllPrograms.Location = new System.Drawing.Point(0, 520);
 			this.lblAllPrograms.Name = "lblAllPrograms";
+			this.lblAllPrograms.PassThroughClick = false;
 			this.lblAllPrograms.Size = new System.Drawing.Size(300, 30);
 			this.lblAllPrograms.TabIndex = 1;
 			this.lblAllPrograms.Text = "All Programs";
@@ -98,6 +99,7 @@
 			this.lblLogOff.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.lblLogOff.Location = new System.Drawing.Point(0, 460);
 			this.lblLogOff.Name = "lblLogOff";
+			this.lblLogOff.PassThroughClick = false;
 			this.lblLogOff.Size = new System.Drawing.Size(200, 30);
 			this.lblLogOff.TabIndex = 3;
 			this.lblLogOff.Text = "LOGOFF";
@@ -114,6 +116,7 @@
 			this.lblRestart.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.lblRestart.Location = new System.Drawing.Point(0, 490);
 			this.lblRestart.Name = "lblRestart";
+			this.lblRestart.PassThroughClick = false;
 			this.lblRestart.Size = new System.Drawing.Size(200, 30);
 			this.lblRestart.TabIndex = 2;
 			this.lblRestart.Text = "RESTART";
@@ -130,6 +133,7 @@
 			this.lblShutdown.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.lblShutdown.Location = new System.Drawing.Point(0, 520);
 			this.lblShutdown.Name = "lblShutdown";
+			this.lblShutdown.PassThroughClick = false;
 			this.lblShutdown.Size = new System.Drawing.Size(200, 30);
 			this.lblShutdown.TabIndex = 1;
 			this.lblShutdown.Text = "SHUTDOWN";
@@ -148,6 +152,7 @@
 			this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblUserName.Location = new System.Drawing.Point(0, 0);
 			this.lblUserName.Name = "lblUserName";
+			this.lblUserName.PassThroughClick = false;
 			this.lblUserName.Size = new System.Drawing.Size(200, 50);
 			this.lblUserName.TabIndex = 1;
 			this.lblUserName.Text = "Administrator";
@@ -171,17 +176,14 @@
 			this.Controls.Add(this.pnlContainerRight);
 			this.Controls.Add(this.pnlContainerLeft);
 			this.ForeColor = System.Drawing.Color.White;
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.KeyPreview = true;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(300, 400);
 			this.Name = "StartMenu";
-			this.ShowIcon = false;
-			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.ShowHeader = false;
 			this.Text = "StartMenu";
 			this.TopMost = true;
+			this.Controls.SetChildIndex(this.pnlContainerLeft, 0);
+			this.Controls.SetChildIndex(this.pnlContainerRight, 0);
+			this.Controls.SetChildIndex(this.panel1, 0);
 			this.pnlContainerLeft.ResumeLayout(false);
 			this.pnlContainerRight.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);

@@ -8,18 +8,21 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 
 using ModernDesktop.Misc;
+using System.Runtime.InteropServices;
 
 namespace ModernDesktop.Components.Taskbar
 {
 	public partial class ApplicationWatcher : Component
 	{
+		public event EventHandler ApplicationLaunched;
+
 		private const int ITEM_WIDTH = 40;
 		private const int ITEM_HEIGHT = 40;
 
 		private BackgroundWorker Watcher;
 		private HashSet<ProcessInfo> ListedProcesses = new HashSet<ProcessInfo>();
 		private Control TargetContainer;
-		private ToolTip tt;
+		private bool firstRun = true;
 		private readonly string[] ExcludedApplicationNames =
 		{
 			"applicationframehost",
@@ -54,11 +57,6 @@ namespace ModernDesktop.Components.Taskbar
 
 		public void Run(Control ctrl)
 		{
-			if(tt == null)
-			{
-				tt = new ToolTip();
-			}
-
 			TargetContainer = ctrl;
 			Watcher.RunWorkerAsync();
 		}
@@ -117,15 +115,17 @@ namespace ModernDesktop.Components.Taskbar
 						{
 							Location = proc.MainModule.FileName,
 							MainHandle = proc.MainWindowHandle,
+							ThreadID = proc.MainWindowHandle.GetThreadProcessId(),
 							Name = proc.ProcessName,
 							TargetHandle = IntPtr.Zero,
 							Title = proc.MainWindowTitle
 						};
 
-						// Generate Taskbar Control
 						GenerateItem(new Point(left, 0), pi, proc.MainModule.FileName);
 						hasChanged = true;
-						// --
+
+						if (!firstRun)
+							ApplicationLaunched?.Invoke(pi, null);
 
 						left += ITEM_WIDTH + 5;
 
@@ -168,6 +168,9 @@ namespace ModernDesktop.Components.Taskbar
 							GenerateItem(new Point(left, 0), pi, proc.MainModule.FileName, window.Value);
 							hasChanged = true;
 
+							if (!firstRun)
+								ApplicationLaunched?.Invoke(pi, null);
+
 							left += ITEM_WIDTH + 5;
 
 							ListedProcesses.Add(pi);
@@ -181,7 +184,7 @@ namespace ModernDesktop.Components.Taskbar
 
 				foreach (Controls.Taskbar.TaskbarItem item in TargetContainer.Controls.OfType<Controls.Taskbar.TaskbarItem>())
 				{
-					if (!IsOpen(item.ProcessInformation.Name))
+					if (!IsOpen(item.ProcessInformation.Name, item.ProcessInformation.TargetHandle == IntPtr.Zero ? item.ProcessInformation.MainHandle : IntPtr.Zero, item.ProcessInformation.ThreadID))
 					{
 						ListedProcesses.Remove(item.ProcessInformation);
 						TargetContainer.Invoke(new MethodInvoker(() =>
@@ -196,6 +199,9 @@ namespace ModernDesktop.Components.Taskbar
 
 				if (hasChanged)
 					Reposition();
+
+				if (firstRun)
+					firstRun = false;
 
 				System.Threading.Thread.Sleep(500);
 			}
@@ -232,9 +238,17 @@ namespace ModernDesktop.Components.Taskbar
 			ListedProcesses.Add(info);
 		}
 
-		private bool IsOpen(string name)
+		private bool IsOpen(string name, IntPtr id, uint threadID = 0)
 		{
-			return Process.GetProcessesByName(name).Length > 0;
+			if (id == IntPtr.Zero)
+				return Process.GetProcessesByName(name).Count() > 0;
+
+			if (threadID != 0)
+				foreach (Process proc in Process.GetProcessesByName(name))
+					if (proc.MainWindowHandle.GetThreadProcessId() == threadID)
+						return true;
+
+			return Process.GetProcessesByName(name).Where(x => x.MainWindowHandle == id).Count() > 0;
 		}
 
 		private ProcessInfo Exists(IntPtr id)

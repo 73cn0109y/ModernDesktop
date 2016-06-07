@@ -5,14 +5,14 @@ using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
 
-using ModernDesktop.Environment;
 using ModernDesktop.Controls.StartMenu;
+using ModernDesktop.Misc;
 
 namespace ModernDesktop.Applications.StartMenu
 {
 	public partial class StartMenu : Form
 	{
-		private string RECENTAPPS_FILELOCATION = "%CurrentUser.RootPath%/Settings/System/recents.txt".Parse();
+		private readonly string RECENTAPPS_FILELOCATION = Environment.CurrentUser.SystemSettings + "/recentapplications.txt";
 		private readonly Color GENERALLABEL_HOVERCOLOR = Color.FromArgb(25, 255, 255, 255);
 		private readonly Color GENERALLABEL_PRESSCOLOR = Color.FromArgb(50, 255, 255, 255);
 
@@ -21,6 +21,30 @@ namespace ModernDesktop.Applications.StartMenu
 			InitializeComponent();
 
 			BuildRecent();
+		}
+
+		public void ProgramLaunched(string fileName)
+		{
+			bool modified = false;
+			HashSet<string> Lines = new HashSet<string>();
+
+			foreach (string line in File.ReadAllLines(RECENTAPPS_FILELOCATION))
+			{
+				string currentLine = line;
+
+				if (currentLine.Split(",")[0] == fileName)
+				{
+					currentLine = currentLine.Split(",")[0] + "," + (int.Parse(currentLine.Split(",")[1]) + 1).ToString();
+					modified = true;
+				}
+
+				Lines.Add(currentLine);
+			}
+
+			if (!modified)
+				Lines.Add(fileName + "," + 0);
+
+			File.WriteAllLines(RECENTAPPS_FILELOCATION, Lines.ToArray());
 		}
 
 		private void Check()
@@ -55,9 +79,9 @@ namespace ModernDesktop.Applications.StartMenu
 
 			int top = 5;
 
-			foreach (RecentInfo obj in RecentApplications)
+			foreach (RecentInfo obj in RecentApplications.Reverse())
 			{
-				RecentItem item = new RecentItem(obj, pnlRecentPrograms.Width);
+				RecentItem item = new RecentItem(obj, pnlRecentPrograms.Width, obj.FileName);
 				item.Location = new Point(5, top);
 
 				pnlRecentPrograms.Controls.Add(item);
@@ -126,6 +150,24 @@ namespace ModernDesktop.Applications.StartMenu
 		{
 			((Label)sender).BackColor = GENERALLABEL_HOVERCOLOR;
 		}
+
+		protected override void OnDeactivate(EventArgs e)
+		{
+			Hide();
+
+			base.OnDeactivate(e);
+		}
+
+		protected override void OnVisibleChanged(EventArgs e)
+		{
+			if (Visible)
+			{
+				Focus();
+				Activate();
+			}
+
+			base.OnVisibleChanged(e);
+		}
 	}
 
 	public class RecentInfo : IComparable
@@ -143,7 +185,10 @@ namespace ModernDesktop.Applications.StartMenu
 
 			RecentInfo other = obj as RecentInfo;
 			if (other != null)
-				return Popularity.CompareTo(other.Popularity);
+			{
+				int result = Popularity.CompareTo(other.Popularity);
+				return result == 0 ? 1 : result;
+			}
 			else
 				throw new ArgumentException("Object is not a RecentInfo");
 		}

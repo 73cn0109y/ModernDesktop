@@ -34,6 +34,15 @@ namespace ModernDesktop
 			InitializeGadgets();
 
 			Handle.BottomMost();
+
+			Tester();
+		}
+
+		private void Tester()
+		{
+			Applications.Settings.Settings settings = new Applications.Settings.Settings();
+			settings.Show();
+			settings.BringToFront();
 		}
 
 		private void InitializeGadgets()

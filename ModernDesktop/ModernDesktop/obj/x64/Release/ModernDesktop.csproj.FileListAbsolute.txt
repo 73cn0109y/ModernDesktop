@@ -9,3 +9,8 @@ C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Re
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.csproj.GenerateResource.Cache
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.exe
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.StartMenu.StartMenu.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\MaterialAPI.dll
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\MaterialAPI.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.Settings.Settings.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Form.resources

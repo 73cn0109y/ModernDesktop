@@ -17,6 +17,7 @@
 		public static string Music { get { return RootPath + "/Music/"; } }
 		public static string Pictures { get { return RootPath + "/Pictures/"; } }
 		public static string Videos { get { return RootPath + "/Videos/"; } }
+		public static string SystemSettings { get { return RootPath + "/Settings/System/"; } }
 	}
 
 	public static class Extensions
@@ -30,6 +31,7 @@
 			e = e.Replace("%CurrentUser.Music%", CurrentUser.Music);
 			e = e.Replace("%CurrentUser.Pictures%", CurrentUser.Pictures);
 			e = e.Replace("%CurrentUser.Videos%", CurrentUser.Videos);
+			e = e.Replace("%CurrentUser.SystemSettings%", CurrentUser.SystemSettings);
 
 			return e;
 		}

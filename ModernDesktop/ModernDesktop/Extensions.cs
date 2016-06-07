@@ -35,6 +35,8 @@ namespace ModernDesktop
 		private static extern bool SetForegroundWindow(IntPtr hWnd);
 		[DllImport("user32.dll")]
 		private static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
+		[DllImport("user32.dll", SetLastError = true)]
+		static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 		#endregion
 
 		#region Constants
@@ -236,6 +238,13 @@ namespace ModernDesktop
 			return GetForegroundWindow();
 		}
 
+		public static uint GetThreadProcessId(this IntPtr handle)
+		{
+			uint threadID = 0;
+			GetWindowThreadProcessId(handle, out threadID);
+			return threadID;
+		}
+
 		public static WindowState GetWindowState(this IntPtr handle)
 		{
 			WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
@@ -295,6 +304,29 @@ namespace ModernDesktop
 		{
 			SendMessage(ctrl.Handle, WM_SETREDRAW, true, 0);
 			ctrl.Refresh();
+		}
+
+		public static string[] ToArray<T>(this IEnumerable<T> array)
+		{
+			List<string> arr = new List<string>();
+			foreach (var e in array)
+				arr.Add(e.ToString());
+			return arr.ToArray();
+		}
+
+		public static bool AtTopOfScreen(this Point pos)
+		{
+			foreach (Screen scr in Screen.AllScreens)
+				if (scr.Bounds.Contains(pos))
+					if (pos.Y <= scr.Bounds.Top + 5)
+						return true;
+
+			return false;
+		}
+
+		public static int DistanceMoved(this Point p1, Point p2)
+		{
+			return ((p1.X - p2.X) * (p1.X - (p2.X)) + (p1.Y - p2.Y) * (p1.Y - (p2.Y)));
 		}
 	}
 }
