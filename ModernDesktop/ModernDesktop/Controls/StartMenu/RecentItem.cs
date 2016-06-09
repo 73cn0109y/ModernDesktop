@@ -4,15 +4,16 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using ModernDesktop.Applications.StartMenu;
+using ModernDesktop.Applications;
+using MaterialAPI;
 
 namespace ModernDesktop.Controls.StartMenu
 {
 	public class RecentItem : Panel
 	{
 		private string FileName = null;
-		private PictureBox Icon;
-		private Label Title;
+		private MaterialAPI.PictureBox Icon;
+		private MaterialAPI.Label Title;
 
 		public RecentItem(RecentInfo info, int parentWidth, string fileName)
 		{
@@ -24,7 +25,7 @@ namespace ModernDesktop.Controls.StartMenu
 			Bitmap icon = new Bitmap(info.FileName.GetLargeIcon(), new Size(30, 30));
 			icon.OptimizeImage();
 
-			Icon = new PictureBox();
+			Icon = new MaterialAPI.PictureBox();
 			Icon.Size = new Size(30, 30);
 			Icon.Location = new Point(0, 0);
 			Icon.BackgroundImage = icon;
@@ -34,13 +35,13 @@ namespace ModernDesktop.Controls.StartMenu
 			Icon.MouseLeave += (se, ev) => { OnMouseLeave(ev); };
 			Icon.MouseClick += (se, ev) => { OnMouseClick(ev); };
 
-			Title = new Label();
+			Title = new MaterialAPI.Label();
 			Title.AutoSize = false;
 			Title.AutoEllipsis = true;
 			Title.Size = new Size(Width - 30, Height);
 			Title.Location = new Point(30, 0);
 			Title.BackColor = Color.Transparent;
-			Title.Text = System.IO.Path.GetFileNameWithoutExtension(info.FileName);
+			Title.Text =  FileData.GetDescription(info.FileName);
 			Title.TextAlign = ContentAlignment.MiddleLeft;
 			Title.Font = new Font("Segoe UI", 12, FontStyle.Regular);
 			Title.Padding = new Padding(15, 0, 15, 0);

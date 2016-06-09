@@ -3,10 +3,11 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using ModernDesktop.Misc;
+using MaterialAPI;
 
 namespace ModernDesktop.Controls.Taskbar
 {
-	public class PopupPreview : Form
+	public class PopupPreview : MaterialAPI.Form
 	{
 		private const int PREVIEW_WIDTH = 200;
 		private const int PREVIEW_HEIGHT = 100;
@@ -15,10 +16,11 @@ namespace ModernDesktop.Controls.Taskbar
 
 		private System.Timers.Timer UpdatePreview;
 		private ProcessInfo targetWindow = null;
-		private PictureBox PreviewBox;
+		private MaterialAPI.PictureBox PreviewBox;
 
 		public PopupPreview()
 		{
+			ShowHeader = false;
 			FormBorderStyle = FormBorderStyle.None;
 			StartPosition = FormStartPosition.Manual;
 			Size = new Size(PREVIEW_WIDTH, PREVIEW_HEIGHT);
@@ -28,7 +30,7 @@ namespace ModernDesktop.Controls.Taskbar
 			Initialize();
 
 			UpdatePreview = new System.Timers.Timer();
-			UpdatePreview.Interval = 1000 / 15;
+			UpdatePreview.Interval = 1000 / 20;
 			UpdatePreview.AutoReset = true;
 			UpdatePreview.Elapsed += UpdatePreview_Elapsed;
 			UpdatePreview.Start();
@@ -36,13 +38,13 @@ namespace ModernDesktop.Controls.Taskbar
 
 		private void Initialize()
 		{
-			PreviewBox = new PictureBox();
+			PreviewBox = new MaterialAPI.PictureBox();
 			PreviewBox.Size = new Size(PREVIEW_WIDTH, PREVIEW_HEIGHT);
 			PreviewBox.Location = new Point(0, 0);
 			PreviewBox.SizeMode = PictureBoxSizeMode.StretchImage;
 			PreviewBox.BackColor = Color.Black;
 
-			Label l = new Label();
+			MaterialAPI.Label l = new MaterialAPI.Label();
 			l.AutoSize = false;
 			l.AutoEllipsis = true;
 			l.UseCompatibleTextRendering = true;
@@ -71,7 +73,7 @@ namespace ModernDesktop.Controls.Taskbar
 			if (TargetWindow.MainHandle == IntPtr.Zero)
 				return;
 
-			if (TargetWindow.MainHandle.GetWindowState() == Extensions.WindowState.Minimized)
+			if (TargetWindow.MainHandle.GetWindowState() == MaterialAPI.Extensions.WindowState.Minimized)
 				return;
 
 			Bitmap img = WindowCaptureUtility.CaptureWindow(TargetWindow.MainHandle) as Bitmap;

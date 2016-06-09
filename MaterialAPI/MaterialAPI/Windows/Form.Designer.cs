@@ -1,14 +1,14 @@
-﻿namespace ModernDesktop
+﻿namespace MaterialAPI
 {
 	public partial class Form
 	{
 		private void InitializeComponent()
 		{
 			this.Header = new System.Windows.Forms.Panel();
-			this.Title = new ModernDesktop.Label();
-			this.MinimizeButton = new ModernDesktop.PictureBox();
-			this.StateButton = new ModernDesktop.PictureBox();
-			this.ExitButton = new ModernDesktop.PictureBox();
+			this.Title = new MaterialAPI.Label();
+			this.MinimizeButton = new MaterialAPI.PictureBox();
+			this.StateButton = new MaterialAPI.PictureBox();
+			this.ExitButton = new MaterialAPI.PictureBox();
 			this.Header.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.MinimizeButton)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.StateButton)).BeginInit();
@@ -28,6 +28,7 @@
 			this.Header.Name = "Header";
 			this.Header.Size = new System.Drawing.Size(800, 40);
 			this.Header.TabIndex = 0;
+			this.Header.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StateButton_MouseClick);
 			this.Header.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Header_MouseDown);
 			this.Header.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Header_MouseMove);
 			this.Header.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Header_MouseUp);
@@ -49,36 +50,45 @@
 			// 
 			// MinimizeButton
 			// 
-			this.MinimizeButton.HoverImage = null;
-			this.MinimizeButton.Image = null;
+			this.MinimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.MinimizeButton.HoverImage = global::MaterialAPI.Properties.Resources.Form_Minimize_Hover;
+			this.MinimizeButton.Image = global::MaterialAPI.Properties.Resources.Form_Minimize_Default;
 			this.MinimizeButton.Location = new System.Drawing.Point(695, 5);
 			this.MinimizeButton.Name = "MinimizeButton";
-			this.MinimizeButton.PressImage = null;
+			this.MinimizeButton.PressImage = global::MaterialAPI.Properties.Resources.Form_Minimize_Press;
 			this.MinimizeButton.Size = new System.Drawing.Size(30, 30);
+			this.MinimizeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.MinimizeButton.TabIndex = 2;
 			this.MinimizeButton.TabStop = false;
+			this.MinimizeButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MinimizeButton_MouseClick);
 			// 
 			// StateButton
 			// 
-			this.StateButton.HoverImage = null;
-			this.StateButton.Image = null;
+			this.StateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.StateButton.HoverImage = global::MaterialAPI.Properties.Resources.Form_State_Hover;
+			this.StateButton.Image = global::MaterialAPI.Properties.Resources.Form_State_Default;
 			this.StateButton.Location = new System.Drawing.Point(730, 5);
 			this.StateButton.Name = "StateButton";
-			this.StateButton.PressImage = null;
+			this.StateButton.PressImage = global::MaterialAPI.Properties.Resources.Form_State_Press;
 			this.StateButton.Size = new System.Drawing.Size(30, 30);
+			this.StateButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.StateButton.TabIndex = 1;
 			this.StateButton.TabStop = false;
+			this.StateButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.StateButton_MouseClick);
 			// 
 			// ExitButton
 			// 
-			this.ExitButton.HoverImage = null;
-			this.ExitButton.Image = null;
+			this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.ExitButton.HoverImage = global::MaterialAPI.Properties.Resources.Form_Exit_Hover;
+			this.ExitButton.Image = global::MaterialAPI.Properties.Resources.Form_Exit_Default;
 			this.ExitButton.Location = new System.Drawing.Point(765, 5);
 			this.ExitButton.Name = "ExitButton";
-			this.ExitButton.PressImage = null;
+			this.ExitButton.PressImage = global::MaterialAPI.Properties.Resources.Form_Exit_Press;
 			this.ExitButton.Size = new System.Drawing.Size(30, 30);
+			this.ExitButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.ExitButton.TabIndex = 0;
 			this.ExitButton.TabStop = false;
+			this.ExitButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ExitButton_MouseClick);
 			// 
 			// Form
 			// 
@@ -107,6 +117,6 @@
 		private PictureBox ExitButton;
 		private PictureBox MinimizeButton;
 		private PictureBox StateButton;
-		private Label Title;
+		private MaterialAPI.Label Title;
 	}
 }

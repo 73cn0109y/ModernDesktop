@@ -3,12 +3,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
 using ModernDesktop.Misc;
+using MaterialAPI;
 
-namespace ModernDesktop.Applications.Taskbar
+namespace ModernDesktop.Applications
 {
-	public partial class Taskbar : Form
+	public partial class Taskbar : MaterialAPI.Form
 	{
-		public Applications.StartMenu.StartMenu StartMenu { get; private set; }
+		public StartMenu StartMenu { get; private set; }
 
 		private BackgroundWorker TimeKeeper;
 
@@ -21,7 +22,7 @@ namespace ModernDesktop.Applications.Taskbar
 
 			this.SetTopMost();
 
-			StartMenu = new Applications.StartMenu.StartMenu();
+			StartMenu = new StartMenu();
 			StartMenu.Location = new Point(Location.X, Location.Y - StartMenu.Height);
 
 			TimeKeeper = new BackgroundWorker();
@@ -30,7 +31,7 @@ namespace ModernDesktop.Applications.Taskbar
 
 			applicationWatcher1.ApplicationLaunched += (se, ev) =>
 			{
-				StartMenu.ProgramLaunched(((ProcessInfo)se).Location);
+				//StartMenu.ProgramLaunched(((ProcessInfo)se).Location);
 			};
 			applicationWatcher1.Run(this);
 		}

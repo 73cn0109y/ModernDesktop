@@ -2,7 +2,7 @@
 using System.Drawing.Text;
 using System.Windows.Forms;
 
-namespace ModernDesktop
+namespace MaterialAPI
 {
 	public class Label : System.Windows.Forms.Label
 	{

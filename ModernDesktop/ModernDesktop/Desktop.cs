@@ -2,40 +2,51 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using MaterialAPI;
 
 namespace ModernDesktop
 {
-	public partial class Desktop : Form
+	public partial class Desktop : MaterialAPI.Form
 	{
-		public Applications.Taskbar.Taskbar Taskbar { get; private set; }
+		public Applications.Taskbar Taskbar { get; private set; }
 		public Widgets.Weather WeatherWidget { get; set; }
 
 		public Desktop(int i = 0)
 		{
 			InitializeComponent();
 
-			Size = Screen.PrimaryScreen.Bounds.Size;
-			Location = Screen.PrimaryScreen.Bounds.Location;
 			BackgroundImage = Properties.Settings.Default.Desktop_WallpaperLocation.LoadImage(ClientSize);
 
 			SendToBack();
 
-			Taskbar = new Applications.Taskbar.Taskbar();
-			Taskbar.Show();
-
 			if (i == 0)
 			{
+				Taskbar = new Applications.Taskbar();
+				Taskbar.Show();
+
+				Size = Screen.PrimaryScreen.Bounds.Size;
+				Location = Screen.PrimaryScreen.Bounds.Location;
+
+				int c = 1;
 				foreach (Screen scr in Screen.AllScreens)
 				{
-					Extensions.SetWorkspace(new Rectangle(scr.Bounds.Left, scr.Bounds.Top, scr.Bounds.Right - scr.Bounds.Left, scr.Bounds.Bottom - (scr.Bounds.Location == default(Point) ? Taskbar.Height : 0) - scr.Bounds.Top));
+					new Rectangle(scr.Bounds.Left, scr.Bounds.Top, scr.Bounds.Right - scr.Bounds.Left, scr.Bounds.Bottom - (scr.Bounds.Location == default(Point) ? Taskbar.Height : 0) - scr.Bounds.Top).SetWorkspace();
+
+					if (scr == Screen.PrimaryScreen)
+						continue;
+
+					Desktop desktop = new Desktop(c++);
+					desktop.Location = scr.Bounds.Location;
+					desktop.Size = scr.Bounds.Size;
+					desktop.Show();
 				}
+
+				Tester();
+
+				InitializeGadgets();
 			}
 
-			InitializeGadgets();
-
 			Handle.BottomMost();
-
-			Tester();
 		}
 
 		private void Tester()

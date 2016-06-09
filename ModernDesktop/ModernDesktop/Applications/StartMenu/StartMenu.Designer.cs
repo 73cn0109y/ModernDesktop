@@ -1,4 +1,4 @@
-﻿namespace ModernDesktop.Applications.StartMenu
+﻿namespace ModernDesktop.Applications
 {
 	partial class StartMenu
 	{
@@ -29,13 +29,13 @@
 		private void InitializeComponent()
 		{
 			this.pnlContainerLeft = new System.Windows.Forms.Panel();
-			this.lblAllPrograms = new ModernDesktop.Label();
+			this.lblAllPrograms = new MaterialAPI.Label();
 			this.pnlRecentPrograms = new System.Windows.Forms.Panel();
 			this.pnlContainerRight = new System.Windows.Forms.Panel();
-			this.lblLogOff = new ModernDesktop.Label();
-			this.lblRestart = new ModernDesktop.Label();
-			this.lblShutdown = new ModernDesktop.Label();
-			this.lblUserName = new ModernDesktop.Label();
+			this.lblLogOff = new MaterialAPI.Label();
+			this.lblRestart = new MaterialAPI.Label();
+			this.lblShutdown = new MaterialAPI.Label();
+			this.lblUserName = new MaterialAPI.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.pnlContainerLeft.SuspendLayout();
 			this.pnlContainerRight.SuspendLayout();
@@ -195,12 +195,12 @@
 
 		private System.Windows.Forms.Panel pnlContainerLeft;
 		private System.Windows.Forms.Panel pnlContainerRight;
-		private ModernDesktop.Label lblUserName;
+		private MaterialAPI.Label lblUserName;
 		private System.Windows.Forms.Panel panel1;
-		private ModernDesktop.Label lblShutdown;
-		private ModernDesktop.Label lblLogOff;
-		private ModernDesktop.Label lblRestart;
-		private ModernDesktop.Label lblAllPrograms;
+		private MaterialAPI.Label lblShutdown;
+		private MaterialAPI.Label lblLogOff;
+		private MaterialAPI.Label lblRestart;
+		private MaterialAPI.Label lblAllPrograms;
 		private System.Windows.Forms.Panel pnlRecentPrograms;
 	}
 }

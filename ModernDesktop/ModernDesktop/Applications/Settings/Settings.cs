@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ModernDesktop.Applications.Settings
 {
-	public partial class Settings : ModernDesktop.Form
+	public partial class Settings : MaterialAPI.Form
 	{
 		public Settings()
 		{

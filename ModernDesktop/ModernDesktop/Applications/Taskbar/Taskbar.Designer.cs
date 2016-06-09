@@ -1,4 +1,4 @@
-﻿namespace ModernDesktop.Applications.Taskbar
+﻿namespace ModernDesktop.Applications
 {
 	partial class Taskbar
 	{

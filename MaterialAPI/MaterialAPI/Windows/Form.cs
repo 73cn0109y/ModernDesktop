@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ModernDesktop
+namespace MaterialAPI
 {
 	public partial class Form : System.Windows.Forms.Form
 	{
@@ -50,6 +50,7 @@ namespace ModernDesktop
 		{
 			if (dragStartPosition != new Point(-1, -1) && !canDragWindow)
 				canDragWindow = true;
+
 			else if(canDragWindow)
 			{
 				Point screenPoint = PointToScreen(e.Location);
@@ -65,6 +66,21 @@ namespace ModernDesktop
 				}
 				Location = new Point(screenPoint.X - dragStartPosition.X, screenPoint.Y - dragStartPosition.Y);
 			}
+		}
+
+		private void ExitButton_MouseClick(object sender, MouseEventArgs e)
+		{
+			Close();
+		}
+
+		private void StateButton_MouseClick(object sender, MouseEventArgs e)
+		{
+			WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
+		}
+
+		private void MinimizeButton_MouseClick(object sender, MouseEventArgs e)
+		{
+			WindowState = FormWindowState.Minimized;
 		}
 	}
 }

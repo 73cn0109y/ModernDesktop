@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using ModernDesktop.Misc;
+using MaterialAPI;
 
 namespace ModernDesktop.Controls.Taskbar
 {
@@ -36,24 +37,24 @@ namespace ModernDesktop.Controls.Taskbar
 			if (e.Button == MouseButtons.Left)
 			{
 				IntPtr handle = ProcessInformation.MainHandle;
-				bool top = Extensions.GetTopWindow() == handle;
+				bool top = MaterialAPI.Extensions.GetTopWindow() == handle;
 
-				Extensions.WindowState state = handle.GetWindowState();
+				MaterialAPI.Extensions.WindowState state = handle.GetWindowState();
 				switch (state)
 				{
-					case Extensions.WindowState.Normal:
+					case MaterialAPI.Extensions.WindowState.Normal:
 						if (top)
 							handle.Minimize();
 						else
 							handle.BringToFromt();
 						break;
-					case Extensions.WindowState.Maximized:
+					case MaterialAPI.Extensions.WindowState.Maximized:
 						if (top)
 							handle.Restore(true);
 						else
 							handle.BringToFromt();
 						break;
-					case Extensions.WindowState.Minimized:
+					case MaterialAPI.Extensions.WindowState.Minimized:
 						handle.Restore();
 						break;
 				}

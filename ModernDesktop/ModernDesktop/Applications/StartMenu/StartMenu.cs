@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using ModernDesktop.Controls.StartMenu;
 using ModernDesktop.Misc;
 
-namespace ModernDesktop.Applications.StartMenu
+namespace ModernDesktop.Applications
 {
-	public partial class StartMenu : Form
+	public partial class StartMenu : MaterialAPI.Form
 	{
 		private readonly string RECENTAPPS_FILELOCATION = Environment.CurrentUser.SystemSettings + "/recentapplications.txt";
 		private readonly Color GENERALLABEL_HOVERCOLOR = Color.FromArgb(25, 255, 255, 255);
@@ -173,7 +173,11 @@ namespace ModernDesktop.Applications.StartMenu
 	public class RecentInfo : IComparable
 	{
 		public RecentInfo() { }
-		public RecentInfo(string filename, int popularity) { FileName = filename; Popularity = popularity; }
+		public RecentInfo(string filename, int popularity)
+		{
+			FileName = filename;
+			Popularity = popularity;
+		}
 
 		public string FileName { get; set; } = null;
 		public int Popularity { get; set; } = 0;

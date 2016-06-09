@@ -2,13 +2,25 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ModernDesktop
+namespace MaterialAPI
 {
 	public class PictureBox : System.Windows.Forms.PictureBox
 	{
-		public new Image Image { get { return base.Image; } set { base.Image = value; } }
+		public new Image Image { get; set; }
 		public Image HoverImage { get; set; }
 		public Image PressImage { get; set; }
+
+		public PictureBox()
+		{
+			base.Image = Image;
+		}
+
+		protected override void OnHandleCreated(EventArgs e)
+		{
+			base.Image = Image;
+
+			base.OnHandleCreated(e);
+		}
 
 		protected override void OnMouseEnter(EventArgs e)
 		{
@@ -22,9 +34,6 @@ namespace ModernDesktop
 
 		protected override void OnMouseLeave(EventArgs e)
 		{
-			if (ClientRectangle.Contains(PointToClient(Cursor.Position)))
-				return;
-
 			if (Image != null)
 				base.Image = Image;
 

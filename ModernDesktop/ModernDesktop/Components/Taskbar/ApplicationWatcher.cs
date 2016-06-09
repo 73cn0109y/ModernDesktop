@@ -6,9 +6,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 using ModernDesktop.Misc;
-using System.Runtime.InteropServices;
+using MaterialAPI;
 
 namespace ModernDesktop.Components.Taskbar
 {
@@ -111,11 +112,16 @@ namespace ModernDesktop.Components.Taskbar
 							continue;
 						}
 
+						uint threadID = proc.MainWindowHandle.GetThreadProcessId();
+
+						if (ListedProcesses.ContainsThreadID(threadID))
+							continue;
+
 						ProcessInfo pi = new ProcessInfo()
 						{
 							Location = proc.MainModule.FileName,
 							MainHandle = proc.MainWindowHandle,
-							ThreadID = proc.MainWindowHandle.GetThreadProcessId(),
+							ThreadID = threadID,
 							Name = proc.ProcessName,
 							TargetHandle = IntPtr.Zero,
 							Title = proc.MainWindowTitle
@@ -131,7 +137,7 @@ namespace ModernDesktop.Components.Taskbar
 
 						ListedProcesses.Add(pi);
 					}
-					catch (Win32Exception wexp)
+					catch (Win32Exception wex)
 					{
 
 					}
@@ -193,7 +199,7 @@ namespace ModernDesktop.Components.Taskbar
 						}));
 						hasChanged = true;
 					}
-					else if(item.ProcessInformation.MainHandle.GetWindowState() == Extensions.WindowState.Minimized)
+					else if(item.ProcessInformation.MainHandle.GetWindowState() == MaterialAPI.Extensions.WindowState.Minimized)
 						item.ProcessInformation.MainHandle.SendToBack();
 				}
 
@@ -223,7 +229,7 @@ namespace ModernDesktop.Components.Taskbar
 			Controls.Taskbar.TaskbarItem item = new Controls.Taskbar.TaskbarItem();
 			item.Size = new Size(ITEM_WIDTH, ITEM_HEIGHT);
 			item.Location = location;
-			item.BackgroundImage = FileName.GetLargeIcon();
+			item.BackgroundImage = processInfo.MainHandle.GetWindowIcon();
 			item.Name = processInfo.MainHandle.ToString();
 			item.ProcessInformation = processInfo;
 

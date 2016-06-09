@@ -95,9 +95,6 @@
     <Compile Include="Components\Taskbar\ApplicationWatcher.Designer.cs">
       <DependentUpon>ApplicationWatcher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Windows\PictureBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\StartMenu\RecentItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -107,22 +104,14 @@
     <Compile Include="Controls\Taskbar\TaskbarItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Windows\Form.Designer.cs">
-      <DependentUpon>Form.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Windows\Label.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="EnvironmentVariables.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Controls\Windows\Form.cs">
+    <Compile Include="FileData.cs" />
+    <Compile Include="Desktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Desktop.Designer.cs">
+      <DependentUpon>Desktop.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="MDF.cs">
@@ -155,11 +144,8 @@
     <EmbeddedResource Include="Applications\Taskbar\Taskbar.resx">
       <DependentUpon>Taskbar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Windows\Form.resx">
-      <DependentUpon>Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Desktop.resx">
+      <DependentUpon>Desktop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDF.resx">
       <DependentUpon>MDF.cs</DependentUpon>
@@ -239,8 +225,35 @@
     <None Include="Resources\Widget_Weather_Fog.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Form_Exit_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_Exit_Hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_Exit_Press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_Minimize_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_Minimize_Hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_Minimize_Press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_State_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_State_Hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form_State_Press.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\MaterialAPI\MaterialAPI\MaterialAPI.csproj">
-      <Project>{40609D88-EA70-4E71-A29A-9BA6CCDBE4B2}</Project>
+      <Project>{40609d88-ea70-4e71-a29a-9ba6ccdbe4b2}</Project>
       <Name>MaterialAPI</Name>
     </ProjectReference>
   </ItemGroup>
