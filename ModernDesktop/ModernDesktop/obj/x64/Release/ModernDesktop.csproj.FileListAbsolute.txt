@@ -1,7 +1,6 @@
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\ModernDesktop.exe.config
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\ModernDesktop.exe
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\ModernDesktop.pdb
-C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.Taskbar.Taskbar.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Desktop.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.MDF.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Properties.Resources.resources
@@ -9,8 +8,10 @@ C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Re
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.csproj.GenerateResource.Cache
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.exe
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.pdb
-C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.StartMenu.StartMenu.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\MaterialAPI.dll
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\MaterialAPI.pdb
-C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.Settings.Settings.resources
-C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Form.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.StartMenu.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Release\ModernDesktop.Applications.Taskbar.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\Settings.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Release\Settings.pdb

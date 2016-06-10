@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using MaterialAPI;
+using MaterialAPI.Extensions.General;
+using MaterialAPI.Extensions.Windows;
 
 namespace ModernDesktop
 {
@@ -16,6 +17,7 @@ namespace ModernDesktop
 			InitializeComponent();
 
 			BackgroundImage = Properties.Settings.Default.Desktop_WallpaperLocation.LoadImage(ClientSize);
+			Name = "Desktop" + i;
 
 			SendToBack();
 
@@ -49,9 +51,25 @@ namespace ModernDesktop
 			Handle.BottomMost();
 		}
 
+		public void SetBackground(string location)
+		{
+			Bitmap img = Image.FromFile(location) as Bitmap;
+			img?.OptimizeImage();
+
+			if (img == null)
+				return;
+
+			Properties.Settings.Default.Desktop_WallpaperLocation = location;
+			Properties.Settings.Default.Save();
+
+			BackgroundImage?.Dispose();
+			BackgroundImage = img;
+		}
+
 		private void Tester()
 		{
-			Applications.Settings.Settings settings = new Applications.Settings.Settings();
+			Settings.Form1 settings = new Settings.Form1(new Dictionary<string, string>() { { "WallpaperDirectory", System.IO.Path.GetDirectoryName(Properties.Settings.Default.Desktop_WallpaperLocation) } });
+			settings.PersonalizeWallpaperChanged += (se, ev) => { SetBackground(((string)se)); };
 			settings.Show();
 			settings.BringToFront();
 		}

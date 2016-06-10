@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
 using ModernDesktop.Misc;
-using MaterialAPI;
+using MaterialAPI.Extensions.Windows;
 
 namespace ModernDesktop.Applications
 {

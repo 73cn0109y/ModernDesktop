@@ -13,6 +13,5 @@ C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\Mate
 C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.csproj.GenerateResource.Cache
 C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.dll
 C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.pdb
-C:\Users\Admin\Source\Repos\ModernDesktop\MaterialAPI\MaterialAPI\obj\Debug\MaterialAPI.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\ModernDesktop\bin\Debug\MaterialAPI.dll
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\ModernDesktop\bin\Debug\MaterialAPI.pdb

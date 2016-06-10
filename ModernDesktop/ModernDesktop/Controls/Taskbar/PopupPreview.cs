@@ -3,7 +3,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using ModernDesktop.Misc;
-using MaterialAPI;
+using MaterialAPI.Extensions.General;
+using MaterialAPI.Extensions.Windows;
+using WindowExtensions = MaterialAPI.Extensions.Windows.Extensions;
 
 namespace ModernDesktop.Controls.Taskbar
 {
@@ -54,6 +56,7 @@ namespace ModernDesktop.Controls.Taskbar
 			l.BackColor = Color.FromArgb(200, 30, 30, 30);
 			l.ForeColor = Color.White;
 			l.Font = new Font("Segoe UI", 12, FontStyle.Regular);
+			l.Name = "PopupTitle";
 
 			PreviewBox.Controls.Add(l);
 			Controls.Add(PreviewBox);
@@ -62,7 +65,7 @@ namespace ModernDesktop.Controls.Taskbar
 		private void UpdateTargetWindow()
 		{
 			PreviewBox.Name = TargetWindow.MainHandle.ToString();
-			PreviewBox.Controls[0].Text = TargetWindow.Title;
+			PreviewBox.Controls["PopupTitle"].Text = TargetWindow.Title;
 		}
 
 		private void UpdatePreview_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -73,7 +76,7 @@ namespace ModernDesktop.Controls.Taskbar
 			if (TargetWindow.MainHandle == IntPtr.Zero)
 				return;
 
-			if (TargetWindow.MainHandle.GetWindowState() == MaterialAPI.Extensions.WindowState.Minimized)
+			if (TargetWindow.MainHandle.GetWindowState() == WindowExtensions.WindowState.Minimized)
 				return;
 
 			Bitmap img = WindowCaptureUtility.CaptureWindow(TargetWindow.MainHandle) as Bitmap;

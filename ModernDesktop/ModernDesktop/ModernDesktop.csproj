@@ -71,12 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications\Settings\Settings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Applications\Settings\Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
-    </Compile>
     <Compile Include="Applications\StartMenu\StartMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,15 +123,8 @@
     <Compile Include="Widgets\Weather.Designer.cs">
       <DependentUpon>Weather.cs</DependentUpon>
     </Compile>
-    <Compile Include="WindowCaptureUtility.cs" />
-    <Compile Include="WindowCapture\WindowSnap.cs" />
-    <Compile Include="WindowCapture\WindowSnapCollection.cs" />
-    <Compile Include="WindowCapture\XPAppearance.cs" />
-    <Compile Include="WindowCapture\XPAppearance.SPI.cs" />
-    <Compile Include="WindowClassFinder.cs" />
-    <EmbeddedResource Include="Applications\Settings\Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="WindowCapture\WindowCaptureUtility.cs" />
+    <Compile Include="WindowCapture\WindowClassFinder.cs" />
     <EmbeddedResource Include="Applications\StartMenu\StartMenu.resx">
       <DependentUpon>StartMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,7 +243,12 @@
       <Project>{40609d88-ea70-4e71-a29a-9ba6ccdbe4b2}</Project>
       <Name>MaterialAPI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Settings\Settings.csproj">
+      <Project>{7f0a6fd6-c13b-405d-9856-ecf90ff01e9d}</Project>
+      <Name>Settings</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using ModernDesktop.Applications;
 using MaterialAPI;
 
+using MaterialAPI.Extensions.General;
+
 namespace ModernDesktop.Controls.StartMenu
 {
 	public class RecentItem : Panel

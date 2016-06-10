@@ -19,3 +19,4 @@ C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\Medi
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csproj.GenerateResource.Cache
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.exe
 C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.pdb
+C:\Users\Admin\Source\Repos\ModernDesktop\MediaCenter\MediaCenter\obj\Debug\MediaCenter.csprojResolveAssemblyReference.cache

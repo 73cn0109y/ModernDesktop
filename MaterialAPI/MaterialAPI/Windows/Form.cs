@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+using MaterialAPI.Extensions.General;
+
 namespace MaterialAPI
 {
 	public partial class Form : System.Windows.Forms.Form
@@ -23,7 +25,7 @@ namespace MaterialAPI
 
 		public new void SendToBack()
 		{
-			Extensions.SendToBack(this);
+			Extensions.Windows.Extensions.SendToBack(this);
 		}
 
 		private void UpdateHeaderVisible()

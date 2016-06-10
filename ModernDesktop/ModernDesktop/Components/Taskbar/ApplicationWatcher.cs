@@ -10,6 +10,9 @@ using System.Runtime.InteropServices;
 
 using ModernDesktop.Misc;
 using MaterialAPI;
+using MaterialAPI.Extensions.General;
+using MaterialAPI.Extensions.Windows;
+using WindowExtensions = MaterialAPI.Extensions.Windows.Extensions;
 
 namespace ModernDesktop.Components.Taskbar
 {
@@ -59,6 +62,8 @@ namespace ModernDesktop.Components.Taskbar
 		public void Run(Control ctrl)
 		{
 			TargetContainer = ctrl;
+			if (ctrl == null)
+				return;
 			Watcher.RunWorkerAsync();
 		}
 
@@ -91,56 +96,64 @@ namespace ModernDesktop.Components.Taskbar
 				Dictionary<uint[], string> chromeWindows = new Dictionary<uint[], string>();
 				chromeWindows.Add(WindowsByClassFinder.WindowTitlesForClass("Chrome_WidgetWin_0"), WindowsByClassFinder.WindowTitlesForClass("Chrome_WidgetWin_1"));
 
-				foreach (Process proc in Process.GetProcesses("."))
+				Process[] procs = Process.GetProcesses(".");
+
+				try
 				{
-					try
+					foreach (Process proc in procs)
 					{
-						if (proc.MainWindowTitle == "" || ExcludedApplicationNames.Contains(proc.ProcessName.ToLower()))
-							continue;
-
-						if (!proc.Responding)
-							continue;
-
-						ProcessInfo exists = Exists(proc.MainWindowHandle);
-
-						if (exists != null)
+						try
 						{
-							if (exists.Title != proc.MainWindowTitle)
+							if (proc.MainWindowTitle == "" || ExcludedApplicationNames.Contains(proc.MainWindowTitle.ToLower()) || !proc.Responding)
+								continue;
+
+							ProcessInfo exists = Exists(proc.MainWindowHandle);
+
+							if (exists != null)
 							{
-								UpdateTitle(exists);
+								if (exists.Title != proc.MainWindowTitle)
+								{
+									UpdateTitle(exists);
+								}
+								continue;
 							}
-							continue;
+
+							uint threadID = proc.MainWindowHandle.GetThreadProcessId();
+
+							if (ListedProcesses.ContainsThreadID(threadID))
+								continue;
+
+							ProcessInfo pi = new ProcessInfo()
+							{
+								Location = proc.MainModule.FileName,
+								MainHandle = proc.MainWindowHandle,
+								ThreadID = threadID,
+								Name = proc.ProcessName,
+								TargetHandle = IntPtr.Zero,
+								Title = proc.MainWindowTitle
+							};
+
+							GenerateItem(new Point(left, 0), pi, proc.MainModule.FileName);
+							hasChanged = true;
+
+							if (!firstRun)
+								ApplicationLaunched?.Invoke(pi, null);
+
+							left += ITEM_WIDTH + 5;
+
+							ListedProcesses.Add(pi);
 						}
-
-						uint threadID = proc.MainWindowHandle.GetThreadProcessId();
-
-						if (ListedProcesses.ContainsThreadID(threadID))
-							continue;
-
-						ProcessInfo pi = new ProcessInfo()
+						catch (Win32Exception wex)
 						{
-							Location = proc.MainModule.FileName,
-							MainHandle = proc.MainWindowHandle,
-							ThreadID = threadID,
-							Name = proc.ProcessName,
-							TargetHandle = IntPtr.Zero,
-							Title = proc.MainWindowTitle
-						};
 
-						GenerateItem(new Point(left, 0), pi, proc.MainModule.FileName);
-						hasChanged = true;
-
-						if (!firstRun)
-							ApplicationLaunched?.Invoke(pi, null);
-
-						left += ITEM_WIDTH + 5;
-
-						ListedProcesses.Add(pi);
+						}
 					}
-					catch (Win32Exception wex)
-					{
-
-					}
+				}
+				finally
+				{
+					foreach (Process proc in procs)
+						proc.Dispose();
+					procs = null;
 				}
 
 				foreach (KeyValuePair<uint[], string> window in chromeWindows)
@@ -149,8 +162,6 @@ namespace ModernDesktop.Components.Taskbar
 					{
 						try
 						{
-							Process proc = Process.GetProcessById((int)window.Key[1]);
-
 							ProcessInfo exists = Exists(new IntPtr(window.Key[0]));
 
 							if (exists != null)
@@ -161,6 +172,8 @@ namespace ModernDesktop.Components.Taskbar
 								}
 								continue;
 							}
+
+							Process proc = Process.GetProcessById((int)window.Key[1]);
 
 							ProcessInfo pi = new ProcessInfo()
 							{
@@ -199,7 +212,7 @@ namespace ModernDesktop.Components.Taskbar
 						}));
 						hasChanged = true;
 					}
-					else if(item.ProcessInformation.MainHandle.GetWindowState() == MaterialAPI.Extensions.WindowState.Minimized)
+					else if(item.ProcessInformation.MainHandle.GetWindowState() == WindowExtensions.WindowState.Minimized)
 						item.ProcessInformation.MainHandle.SendToBack();
 				}
 

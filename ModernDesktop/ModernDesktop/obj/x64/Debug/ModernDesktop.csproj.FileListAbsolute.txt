@@ -11,6 +11,7 @@ C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\De
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Debug\MaterialAPI.dll
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Debug\MaterialAPI.pdb
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Debug\ModernDesktop.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Debug\ModernDesktop.Applications.Settings.Settings.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Debug\ModernDesktop.Applications.StartMenu.resources
 C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\obj\x64\Debug\ModernDesktop.Applications.Taskbar.resources
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Debug\Settings.exe
+C:\Users\Admin\Source\Repos\ModernDesktop\ModernDesktop\ModernDesktop\bin\x64\Debug\Settings.pdb
